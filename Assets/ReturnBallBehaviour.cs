@@ -6,7 +6,7 @@ public class ReturnBallBehaviour : SteeringBehaviour
 {
     public GameObject targetBall;
     void OnEnable()
-    {
+    { 
         GameObject dogMouth =  transform.Find("dog").Find("ballAttach").gameObject;
         targetBall.GetComponent<Rigidbody>().isKinematic = true;
         targetBall.GetComponent<Rigidbody>().useGravity = false;

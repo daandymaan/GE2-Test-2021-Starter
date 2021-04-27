@@ -8,43 +8,34 @@ public class ThrowBallBehaviour : MonoBehaviour
     public bool spaceReleased = true;
     public bool charging = false;
     public float chargeDuration = 0f;
-    public float maxCharge = 2f;
+    public float chargeMultiplier = 10;
     public float  minThrowPower = 10f;
     public float maxThrowPower = 200f;
+    public float startTime = 0;
 
     void Start()
     {
     
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && spaceReleased)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            // throwBall();
-            chargeDuration  = 0f;
-            charging = true;
-            spaceReleased = false;
-        } 
-        else if (charging && (Input.GetKeyDown(KeyCode.Space) || chargeDuration >= maxCharge))
+            startTime = Time.time;
+        }
+
+        
+        if(Input.GetKeyUp(KeyCode.Space))
         {
-            // float throwPower = Mathf.Lerp(minThrowPower, maxThrowPower, chargeDuration / maxCharge);
-            float throwPower = 30f;
+            float heldTime = Time.time - startTime;
+            Debug.Log("heldTime" + heldTime);
+            heldTime *= chargeMultiplier;
+            float throwPower = Mathf.Clamp(heldTime, minThrowPower, maxThrowPower);
             throwBall(throwPower);
-            ResetThrowValues();
-        }
+            heldTime = 0;
 
-        if(charging)
-        {
-            chargeDuration += Time.deltaTime;
         }
-
-        if(!spaceReleased)
-        {
-            spaceReleased = Input.GetKeyUp(KeyCode.Space);
-        }
-
     }
 
     private void throwBall(float throwPower)
@@ -57,11 +48,5 @@ public class ThrowBallBehaviour : MonoBehaviour
             ball.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
             ball.GetComponent<Rigidbody>().AddForce(transform.forward * throwPower, ForceMode.Impulse);
         }
-    }
-
-    private void ResetThrowValues()
-    {
-        chargeDuration = 0f;
-        charging = false;
     }
 }
