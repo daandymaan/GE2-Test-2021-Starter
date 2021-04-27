@@ -26,11 +26,11 @@ public class FollowPath : SteeringBehaviour
 
         if (!path.looped && path.IsLast())
         {
-            return boid.ArriveForce(nextWaypoint, 20);
+            return dog.ArriveForce(nextWaypoint, 20);
         }
         else
         {
-            return boid.SeekForce(nextWaypoint);
+            return dog.SeekForce(nextWaypoint);
         }
     }
 }
