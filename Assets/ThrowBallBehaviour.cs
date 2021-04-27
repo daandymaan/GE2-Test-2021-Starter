@@ -29,7 +29,8 @@ public class ThrowBallBehaviour : MonoBehaviour
         } 
         else if (charging && (Input.GetKeyDown(KeyCode.Space) || chargeDuration >= maxCharge))
         {
-            float throwPower = Mathf.Lerp(minThrowPower, maxThrowPower, chargeDuration / maxCharge);
+            // float throwPower = Mathf.Lerp(minThrowPower, maxThrowPower, chargeDuration / maxCharge);
+            float throwPower = 30f;
             throwBall(throwPower);
             ResetThrowValues();
         }
