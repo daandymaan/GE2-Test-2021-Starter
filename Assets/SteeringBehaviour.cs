@@ -10,11 +10,11 @@ public abstract class SteeringBehaviour : MonoBehaviour
     public Vector3 force;
 
     [HideInInspector]
-    public Boid boid;
+    public DogController dog;
 
     public void Awake()
     {
-        boid = GetComponent<Boid>();
+        dog = GetComponent<DogController>();
     }
 
     public abstract Vector3 Calculate();
