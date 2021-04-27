@@ -20,12 +20,13 @@ public class ThrowBallBehaviour : MonoBehaviour
 
     void Update()
     {
+        //Starts charging the throw
         if(Input.GetKeyDown(KeyCode.Space))
         {
             startTime = Time.time;
         }
 
-        
+        //Release and throws ball 
         if(Input.GetKeyUp(KeyCode.Space))
         {
             float heldTime = Time.time - startTime;
@@ -38,6 +39,7 @@ public class ThrowBallBehaviour : MonoBehaviour
         }
     }
 
+    //Throws the ball at the charge distance
     private void throwBall(float throwPower)
     {
         Debug.Log("Throw Power:" + throwPower);

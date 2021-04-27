@@ -12,6 +12,7 @@ public class TailWagBehaviour : MonoBehaviour
         theta = 0;
     }
 
+    //Hamonic tail behaviour, which wags the tail back and forth
     void Update()
     {
         float tailSpeed = transform.parent.gameObject.GetComponent<DogController>().velocity.magnitude;
