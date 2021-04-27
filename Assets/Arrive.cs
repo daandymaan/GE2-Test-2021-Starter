@@ -13,7 +13,7 @@ public class Arrive : SteeringBehaviour
 
     public override Vector3 Calculate()
     {
-        return boid.ArriveForce(targetPosition, slowingDistance);
+        return dog.ArriveForce(targetPosition, slowingDistance);
     }
 
     public void Update()
